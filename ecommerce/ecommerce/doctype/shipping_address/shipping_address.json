@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "autoname": "format:{#######}",
+ "creation": "2021-10-10 09:02:22.108303",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "flat_number",
+  "building_number",
+  "road_number",
+  "column_break_6",
+  "customer_name",
+  "block_number",
+  "area_name",
+  "city_name",
+  "primary_address",
+  "title"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "flat_number",
+   "fieldtype": "Data",
+   "label": "Flat No"
+  },
+  {
+   "fieldname": "building_number",
+   "fieldtype": "Data",
+   "label": "Building No"
+  },
+  {
+   "fieldname": "road_number",
+   "fieldtype": "Data",
+   "label": "Road No"
+  },
+  {
+   "fieldname": "block_number",
+   "fieldtype": "Data",
+   "label": "Block No"
+  },
+  {
+   "fieldname": "area_name",
+   "fieldtype": "Data",
+   "label": "Area Name"
+  },
+  {
+   "fieldname": "city_name",
+   "fieldtype": "Data",
+   "label": "City Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "primary_address",
+   "fieldtype": "Check",
+   "label": "Primary Address"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "customer",
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Read Only",
+   "label": "Customer Name"
+  },
+  {
+   "default": "{customer_name}: Area: {area_name} - {city_name}",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-10 13:48:34.854347",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Shipping Address",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "title",
+ "track_changes": 1
+}

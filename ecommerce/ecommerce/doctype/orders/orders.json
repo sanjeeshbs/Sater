@@ -1,0 +1,308 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2021-10-07 17:07:16.786361",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "customer",
+  "customer_name",
+  "shipping_address",
+  "shipping_address_details",
+  "column_break_4",
+  "order_status",
+  "order_date",
+  "time_slote",
+  "time_slote_detial",
+  "payment_method",
+  "order_details_section",
+  "items",
+  "section_break_12",
+  "amount",
+  "column_break_14",
+  "vat",
+  "column_break_16",
+  "total_amount",
+  "section_break_17",
+  "customer_remarks",
+  "amended_from",
+  "payment_status",
+  "section_break_24",
+  "pay_id",
+  "pay_date",
+  "acq_trans_id",
+  "authorization_code",
+  "pay_currency",
+  "invoice_id",
+  "payed_amount",
+  "column_break_32",
+  "card_brand",
+  "card_type",
+  "invoice_number",
+  "invoice_status",
+  "pay_customer_name",
+  "pay_customer_email",
+  "pay_customer_mobile"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "shipping_address",
+   "fieldtype": "Link",
+   "label": "Shipping Address",
+   "options": "Shipping Address"
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Select",
+   "label": "Payment Method",
+   "options": "CASH\nCREDIT\nBENEFIT"
+  },
+  {
+   "fieldname": "order_date",
+   "fieldtype": "Datetime",
+   "label": "Order Date"
+  },
+  {
+   "fieldname": "time_slote",
+   "fieldtype": "Link",
+   "label": "Time Slote",
+   "options": "Timeslotes"
+  },
+  {
+   "columns": 1,
+   "default": "Preparing",
+   "fieldname": "order_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Order Status",
+   "options": "Preparing\nReady For Delivery\nComplete"
+  },
+  {
+   "fieldname": "customer_remarks",
+   "fieldtype": "Small Text",
+   "label": "Customer Remarks"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Read Only",
+   "label": "Amount"
+  },
+  {
+   "fieldname": "vat",
+   "fieldtype": "Read Only",
+   "label": "VAT"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Total Amount"
+  },
+  {
+   "fieldname": "order_details_section",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "OrderDetails"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Orders",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "ORD-",
+   "print_hide": 1,
+   "set_only_once": 1
+  },
+  {
+   "columns": 2,
+   "depends_on": "customer",
+   "fetch_from": "customer.customer_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1
+  },
+  {
+   "depends_on": "shipping_address",
+   "fetch_from": "shipping_address.title",
+   "fetch_if_empty": 1,
+   "fieldname": "shipping_address_details",
+   "fieldtype": "Data"
+  },
+  {
+   "depends_on": "time_slote",
+   "fetch_from": "time_slote.title",
+   "fetch_if_empty": 1,
+   "fieldname": "time_slote_detial",
+   "fieldtype": "Data"
+  },
+  {
+   "default": "NIL",
+   "fieldname": "payment_status",
+   "fieldtype": "Read Only",
+   "label": "Payment Status"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "pay_id",
+   "fieldtype": "Data",
+   "label": "Payment ID "
+  },
+  {
+   "fieldname": "pay_date",
+   "fieldtype": "Data",
+   "label": "Payment Date"
+  },
+  {
+   "fieldname": "acq_trans_id",
+   "fieldtype": "Data",
+   "label": "Acquirer Transaction ID"
+  },
+  {
+   "fieldname": "authorization_code",
+   "fieldtype": "Data",
+   "label": "Authorization Code"
+  },
+  {
+   "fieldname": "pay_currency",
+   "fieldtype": "Data",
+   "label": "Currency"
+  },
+  {
+   "fieldname": "invoice_id",
+   "fieldtype": "Data",
+   "label": "Invoice ID"
+  },
+  {
+   "fieldname": "payed_amount",
+   "fieldtype": "Data",
+   "label": "Paid Amount"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "card_brand",
+   "fieldtype": "Data",
+   "label": "Card Brand"
+  },
+  {
+   "fieldname": "card_type",
+   "fieldtype": "Data",
+   "label": "Card Type"
+  },
+  {
+   "fieldname": "invoice_number",
+   "fieldtype": "Data",
+   "label": "Invoice Number"
+  },
+  {
+   "fieldname": "invoice_status",
+   "fieldtype": "Data",
+   "label": "Invoice Status"
+  },
+  {
+   "fieldname": "pay_customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "pay_customer_email",
+   "fieldtype": "Data",
+   "label": "Customer Email"
+  },
+  {
+   "fieldname": "pay_customer_mobile",
+   "fieldtype": "Data",
+   "label": "Customer Mobile"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2021-10-12 18:23:33.028834",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Orders",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

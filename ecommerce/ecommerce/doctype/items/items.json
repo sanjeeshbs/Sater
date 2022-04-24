@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "autoname": "format:{######}",
+ "creation": "2021-09-30 13:41:01.011582",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "item_name",
+  "group_name",
+  "item_status",
+  "on_hand",
+  "image_name",
+  "barcodes_section",
+  "barcodes"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "group_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Group Name",
+   "options": "Groups"
+  },
+  {
+   "default": "0",
+   "fieldname": "item_status",
+   "fieldtype": "Check",
+   "label": "Status"
+  },
+  {
+   "fieldname": "on_hand",
+   "fieldtype": "Data",
+   "label": "On Hand"
+  },
+  {
+   "fieldname": "image_name",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "barcodes_section",
+   "fieldtype": "Section Break",
+   "label": "Barcodes"
+  },
+  {
+   "fieldname": "barcodes",
+   "fieldtype": "Table",
+   "label": "Barcode",
+   "options": "Barcodes"
+  }
+ ],
+ "image_field": "image_name",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-25 12:41:10.857551",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Items",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "item_name",
+ "track_changes": 1
+}

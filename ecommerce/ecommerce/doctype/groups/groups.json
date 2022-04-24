@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "autoname": "format:{######}",
+ "creation": "2021-09-26 15:00:20.906919",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "group_name",
+  "parent_group_name",
+  "image_name",
+  "group_name_arabic"
+ ],
+ "fields": [
+  {
+   "fieldname": "group_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Group Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "parent_group_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Parent Group name",
+   "options": "Groups"
+  },
+  {
+   "fieldname": "image_name",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "group_name_arabic",
+   "fieldtype": "Data",
+   "label": "Group Name Arabic"
+  }
+ ],
+ "image_field": "image_name",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-19 15:12:18.742754",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Groups",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "group_name",
+ "track_changes": 1
+}

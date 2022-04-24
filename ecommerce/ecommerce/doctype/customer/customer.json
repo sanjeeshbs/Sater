@@ -1,0 +1,163 @@
+{
+ "actions": [],
+ "autoname": "format:{######}",
+ "creation": "2021-09-28 16:47:43.039242",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "customer_name",
+  "customer_name_arabic",
+  "mobile_no",
+  "points",
+  "customer_status",
+  "location",
+  "billing_address_section",
+  "flat_no",
+  "bldg_no",
+  "road_no",
+  "column_break_10",
+  "block_no",
+  "area_name",
+  "city_name",
+  "activation_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Email",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "points",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Points"
+  },
+  {
+   "default": "1",
+   "fieldname": "customer_status",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Status"
+  },
+  {
+   "depends_on": "customer",
+   "fetch_from": "customer.first_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Customer Name"
+  },
+  {
+   "depends_on": "customer",
+   "fetch_from": "customer.mobile_no",
+   "fetch_if_empty": 1,
+   "fieldname": "mobile_no",
+   "fieldtype": "Read Only",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "billing_address_section",
+   "fieldtype": "Section Break",
+   "label": "Billing Address"
+  },
+  {
+   "fieldname": "flat_no",
+   "fieldtype": "Data",
+   "label": "Flat No"
+  },
+  {
+   "fieldname": "bldg_no",
+   "fieldtype": "Data",
+   "label": "Building No"
+  },
+  {
+   "fieldname": "road_no",
+   "fieldtype": "Data",
+   "label": "Road No"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "block_no",
+   "fieldtype": "Data",
+   "label": "Block No"
+  },
+  {
+   "fieldname": "area_name",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "city_name",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "depends_on": "customer",
+   "fetch_from": "customer.first_name",
+   "fetch_if_empty": 1,
+   "fieldname": "customer_name_arabic",
+   "fieldtype": "Data",
+   "label": "Customer Name Arabic"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "fieldname": "activation_code",
+   "fieldtype": "Read Only",
+   "label": "Activation Code"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-11-07 13:02:02.604145",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Customer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": " customer",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "customer_name",
+ "track_changes": 1
+}

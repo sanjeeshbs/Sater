@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "autoname": "format:{######}",
+ "creation": "2021-10-07 14:21:29.457481",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "time_slote_date",
+  "from_time",
+  "to_time",
+  "no_of_orders",
+  "order_count",
+  "title"
+ ],
+ "fields": [
+  {
+   "fieldname": "time_slote_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "no_of_orders",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "No of Orders"
+  },
+  {
+   "fieldname": "order_count",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Order Count"
+  },
+  {
+   "fieldname": "from_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "From Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "to_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "To Time",
+   "reqd": 1
+  },
+  {
+   "default": "{time_slote_date} - From {from_time} To: {to_time}",
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-10-09 13:30:58.565011",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Timeslotes",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Ecommerce",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "title",
+ "track_changes": 1
+}
