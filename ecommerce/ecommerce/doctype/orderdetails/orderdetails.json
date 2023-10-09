@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "item",
+  "product_image",
   "item_name",
   "unit_name",
   "barcode",
@@ -13,7 +14,8 @@
   "unit_price",
   "vat",
   "total_price",
-  "factor"
+  "factor",
+  "product_image_name"
  ],
  "fields": [
   {
@@ -63,6 +65,7 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Unit Price",
+   "precision": "3",
    "reqd": 1
   },
   {
@@ -70,26 +73,42 @@
    "fieldname": "vat",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "VAT"
+   "label": "VAT",
+   "precision": "3"
   },
   {
    "columns": 2,
    "fieldname": "total_price",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Total Price"
+   "label": "Total Price",
+   "precision": "3"
   },
   {
    "fieldname": "factor",
    "fieldtype": "Float",
    "hidden": 1,
    "label": "Factor"
+  },
+  {
+   "fetch_from": "item.image_name",
+   "fetch_if_empty": 1,
+   "fieldname": "product_image",
+   "fieldtype": "Image",
+   "label": "Product Image1",
+   "options": "product_image_name"
+  },
+  {
+   "fieldname": "product_image_name",
+   "fieldtype": "Attach Image",
+   "hidden": 1,
+   "label": "Product Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-10-10 18:10:54.662332",
+ "modified": "2023-10-05 09:56:10.411436",
  "modified_by": "Administrator",
  "module": "Ecommerce",
  "name": "OrderDetails",

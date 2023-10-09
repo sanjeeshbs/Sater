@@ -3,10 +3,30 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe import utils
 
 
 class Orders(Document):
-    pass
+    def before_save(self):
+        try:
+            order_status = frappe.db.sql("""Select * from  `tabOrder Status` where `order` = %s  and `order_status` = %s """,(self.name, self.order_status), as_dict=True)
+            if not order_status:
+                doc = frappe.get_doc({
+                'doctype': 'Order Status',
+                'order': self.name,
+                'order_status': self.order_status,
+                'update_time': utils.now()
+                })
+                doc.insert(ignore_permissions=True)
+                frappe.db.commit() 
+            else:
+                doc = frappe.get_doc('Order Status', order_status[0]["name"])
+                doc.order_status = self.order_status
+                doc.update_time = utils.now()
+                doc.save(ignore_permissions=True)
+                frappe.db.commit()
+        except BaseException as error:
+            return {"status": "failed", "error": error}        
 
 
 @frappe.whitelist()

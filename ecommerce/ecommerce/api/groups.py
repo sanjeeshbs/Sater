@@ -4,11 +4,11 @@ import json
 g_groups = []
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_all_groups():
     try:
         groups = frappe.db.sql(
-            """SELECT name,group_name,image_name,group_name_arabic FROM tabGroups where parent_group_name='000002'""", as_dict=True)
+            """SELECT name,group_name,image_name,group_name_arabic FROM tabGroups where parent_group_name='000008'""", as_dict=True)
         if groups:
             # message.status, message.data[]
             return {"status": "success", "data": groups}
@@ -18,7 +18,7 @@ def get_all_groups():
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_group_with_name(name):
     try:
         group = frappe.db.sql(
@@ -32,7 +32,7 @@ def get_group_with_name(name):
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_sub_group_of(group):
     try:
         groups = frappe.db.sql(

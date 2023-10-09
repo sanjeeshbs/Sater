@@ -2,7 +2,7 @@ import frappe
 import json
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_timeslotes():
     try:
         timeslotes = frappe.db.sql(

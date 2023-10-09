@@ -11,12 +11,17 @@
   "customer_name",
   "shipping_address",
   "shipping_address_details",
+  "mobile_no",
+  "employee",
+  "employee_name",
   "column_break_4",
   "order_status",
   "order_date",
+  "order_time",
   "time_slote",
   "time_slote_detial",
   "payment_method",
+  "payment_status",
   "order_details_section",
   "items",
   "section_break_12",
@@ -28,7 +33,6 @@
   "section_break_17",
   "customer_remarks",
   "amended_from",
-  "payment_status",
   "section_break_24",
   "pay_id",
   "pay_date",
@@ -43,22 +47,21 @@
   "invoice_number",
   "invoice_status",
   "pay_customer_name",
-  "pay_customer_email",
-  "pay_customer_mobile"
+  "email_id"
  ],
  "fields": [
   {
    "fieldname": "customer",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Customer",
+   "label": "Customer ID",
    "options": "Customer",
    "reqd": 1
   },
   {
    "fieldname": "shipping_address",
    "fieldtype": "Link",
-   "label": "Shipping Address",
+   "label": "Shipping",
    "options": "Shipping Address"
   },
   {
@@ -69,13 +72,14 @@
   },
   {
    "fieldname": "order_date",
-   "fieldtype": "Datetime",
-   "label": "Order Date"
+   "fieldtype": "Date",
+   "label": "Order Date",
+   "read_only": 1
   },
   {
    "fieldname": "time_slote",
    "fieldtype": "Link",
-   "label": "Time Slote",
+   "label": "Time Slote ID",
    "options": "Timeslotes"
   },
   {
@@ -84,8 +88,9 @@
    "fieldname": "order_status",
    "fieldtype": "Select",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Order Status",
-   "options": "Preparing\nReady For Delivery\nComplete"
+   "options": "Order Received\nPreparing\nReady For Delivery\nComplete"
   },
   {
    "fieldname": "customer_remarks",
@@ -94,17 +99,17 @@
   },
   {
    "fieldname": "amount",
-   "fieldtype": "Read Only",
+   "fieldtype": "Currency",
    "label": "Amount"
   },
   {
    "fieldname": "vat",
-   "fieldtype": "Read Only",
+   "fieldtype": "Currency",
    "label": "VAT"
   },
   {
    "fieldname": "total_amount",
-   "fieldtype": "Read Only",
+   "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Total Amount"
   },
@@ -165,27 +170,25 @@
    "fetch_if_empty": 1,
    "fieldname": "customer_name",
    "fieldtype": "Data",
-   "in_list_view": 1
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer Name"
   },
   {
    "depends_on": "shipping_address",
    "fetch_from": "shipping_address.title",
    "fetch_if_empty": 1,
    "fieldname": "shipping_address_details",
-   "fieldtype": "Data"
+   "fieldtype": "Data",
+   "label": "Shipping Address"
   },
   {
    "depends_on": "time_slote",
    "fetch_from": "time_slote.title",
    "fetch_if_empty": 1,
    "fieldname": "time_slote_detial",
-   "fieldtype": "Data"
-  },
-  {
-   "default": "NIL",
-   "fieldname": "payment_status",
-   "fieldtype": "Read Only",
-   "label": "Payment Status"
+   "fieldtype": "Data",
+   "label": "Time Slote"
   },
   {
    "collapsible": 1,
@@ -258,20 +261,49 @@
    "label": "Customer Name"
   },
   {
-   "fieldname": "pay_customer_email",
+   "fetch_from": "customer.mobile_no",
+   "fieldname": "mobile_no",
    "fieldtype": "Data",
-   "label": "Customer Email"
+   "label": "Mobile No"
   },
   {
-   "fieldname": "pay_customer_mobile",
+   "fetch_from": "customer.customer",
+   "fieldname": "email_id",
    "fieldtype": "Data",
-   "label": "Customer Mobile"
+   "label": "Email"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Order Assaign To",
+   "options": "Employees"
+  },
+  {
+   "fetch_from": "employee.staff_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Read Only",
+   "label": "Staff Name"
+  },
+  {
+   "fieldname": "order_time",
+   "fieldtype": "Time",
+   "label": "Order Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_status",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Payment Status",
+   "options": "Payed\nNot Payed"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-10-12 18:23:33.028834",
+ "modified": "2023-10-05 11:22:48.836979",
  "modified_by": "Administrator",
  "module": "Ecommerce",
  "name": "Orders",
@@ -286,6 +318,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   },
@@ -298,6 +331,7 @@
    "read": 1,
    "report": 1,
    "role": "Ecommerce",
+   "select": 1,
    "share": 1,
    "write": 1
   }

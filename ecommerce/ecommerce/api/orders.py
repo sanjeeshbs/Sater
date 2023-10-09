@@ -1,5 +1,7 @@
+from xml.dom.minidom import parseString
 import frappe
 import json
+from frappe import utils
 
 
 # @frappe.whitelist()
@@ -47,11 +49,71 @@ def get_order(customer_email):
                         """Select name,parent,idx,item,item_name,unit_name,barcode,qty,unit_price,vat,total_price,factor from tabOrderDetails where parent =%s""", order["name"], as_dict=True)
                 return {"status": "success", "data": order_list}
             else:
-                return {"status": "success", "data": []}
+                return {"status": "failed", "data": []}
         else:
             return {"status": 'failed', "error": 'Bad Request'}
     except BaseException as error:
         return {"status": 'failed', "error": error}
+
+
+@frappe.whitelist()
+def get_all_orders():
+    try:
+        order_list = frappe.db.sql("""Select name,customer,shipping_address,payment_method,order_date,time_slote,order_status,amount,total_amount,customer_name, shipping_address_details,payment_status from `tabOrders` order by order_date desc""", as_dict=True)
+        if order_list:
+            for order in order_list:
+                order["items"] = frappe.db.sql(
+                        """Select name,parent,idx,item,item_name,unit_name,barcode,qty,unit_price,vat,total_price,factor,product_image_name from tabOrderDetails where parent =%s""", order["name"], as_dict=True)
+            return {"status": "success", "data": order_list}
+        else:
+                return {"status": "failed", "data": []}
+
+    except BaseException as error:
+        return {"status": 'failed', "error": error}
+
+@frappe.whitelist()
+def get_assaigned_orders(staffEmail):
+    try:
+        userDetalis = frappe.db.sql(
+            """Select * from tabEmployees where employee =%s""", staffEmail, as_dict=True)
+        order_list = frappe.db.sql("""Select name,customer,shipping_address,payment_method,order_date,time_slote,order_status,amount,total_amount,customer_name, shipping_address_details,payment_status from `tabOrders` where employee = %s order by order_date desc""", userDetalis[0].name, as_dict=True)
+        if order_list:
+            for order in order_list:
+                order["items"] = frappe.db.sql(
+                        """Select name,parent,idx,item,item_name,unit_name,barcode,qty,unit_price,vat,total_price,factor,product_image_name from tabOrderDetails where parent =%s""", order["name"], as_dict=True)
+            return {"status": "success", "data": order_list}
+        else:
+                return {"status": "failed", "data": []}
+
+    except BaseException as error:
+        return {"status": 'failed', "error": error}
+
+
+@frappe.whitelist()
+def update_order_status():
+    try:
+        orderDetails = json.loads(frappe.request.data)
+        order = frappe.get_doc('Orders', orderDetails["name"])
+        if order:
+            order.order_status = orderDetails["order_status"]
+            order.save(ignore_permissions=True)
+            frappe.db.commit()
+            return {"status": "success", "data": [order]}
+        else:
+            return {"status": "failed"}
+        
+    except BaseException as error:
+        return {"status": 'failed', "error": error}
+
+# @frappe.whitelist()
+# def get_item_image(item):
+#     try:
+#         data = frappe.db.sql(
+#             """Select image_name from tabItems where item_code  =%s""", item, as_dict=True)
+#         return data[0].image_name
+#     except BaseException as error:
+#         print(f'\n\n\n\n\nError: {error}\n\n\n\n\n')
+#         return ""
 
 
 @frappe.whitelist()
@@ -65,9 +127,13 @@ def save_order():
             'doctype': 'Orders',
             'customer': data[0].name,
             'shipping_address': order["shipping_address_id"],
-            'order_date': frappe.utils.get_datetime(order["order_date"]).strftime('%Y-%m-%d %H:%M:%S'),
+            # 'order_date': frappe.utils.get_datetime(order["order_date"]).strftime('%Y-%m-%d'),
+            # 'order_time': frappe.utils.get_datetime(order["order_date"]).strftime('%H:%M:%S'),
+            'order_date': frappe.utils.get_datetime(utils.now()).strftime('%Y-%m-%d'),
+            'order_time': frappe.utils.get_datetime(utils.now()).strftime('%H:%M:%S'),
             'time_slote': order["time_slote_id"],
             'payment_method': order["payment_method"],
+            'payment_status': "Not Payed",
             'amount': order["amount"],
             'vat': order["amount"],
             'total_amount': order["amount"],
@@ -75,14 +141,18 @@ def save_order():
         })
         total_vat = 0
         for item in order["orderDetails"]:
+            data = frappe.db.sql(
+                """Select image_name from tabItems where name  =%s""", item["product_id"], as_dict=True)
+            image_name = data[0].image_name
+            # image_name = item["product_id"]
             vat = (item["qty"] * item["unit_price"]) * \
                 (float(item["vat"]) / 100.0)
             total_price = item["qty"] * item["unit_price"]
             doc.append('items', {"item": item["product_id"], "unit_name": item["uom"], "qty": item["qty"],
-                       "unit_price": item["unit_price"], "vat": vat, "total_price": total_price, "barcode": item["barcode"]})
+                       "unit_price": item["unit_price"], "vat": vat, "total_price": total_price, "barcode": item["barcode"], "product_image_name": image_name})
             total_vat += vat
         doc.vat = total_vat
-        doc.insert()
+        doc.insert(ignore_permissions=True)
         frappe.db.commit()
         return {"status": "success", "data": doc}
     except BaseException as error:

@@ -13,11 +13,35 @@ from frappe.model.document import Document
 class Customer(Document):
     pass
 
+@frappe.whitelist()
+def update_customer_points():
+    try:
+        url = 'http://88.201.64.7:4059/api/v1/Customer'
+        response = requests.get(url)
+        customers = response.json()
+        for customer in customers:
+            user = frappe.db.sql("""SELECT name from `tabUser` where email =%s or username=%s""", (
+                customer["email"], customer["cpr"]), as_dict=True)
+            if user:
+                data = frappe.db.sql(
+                    """Select name from tabCustomer where customer =%s""", user[0]["name"], as_dict=True)
+                if data:                    
+                    new_user_doc2 = frappe.get_doc('Customer', data[0]["name"])
+                    new_user_doc2.points = customer["points"]
+                    new_user_doc2.save(ignore_permissions=True)
+                    frappe.db.commit()
+            
+        return {"status": "success"}        
+
+    except BaseException as error:
+        frappe.db.rollback()
+        return {"status": "failed", "data": error}
+
 
 @frappe.whitelist()
 def update_customer():
     try:
-        url = 'http://88.201.64.7:4058/api/v1/Customer'
+        url = 'https://server.alsatermarket.com:4058/api/v1/Customer'
         response = requests.get(url)
         customers = response.json()
         for customer in customers:
@@ -51,7 +75,7 @@ def update_customer():
                     'city_name': customer["city_name"],
                     'customer_status':  1 if customer["customer_status"] == 'Y' else 0,
                     'activation_code': otp,
-                    'location': '3138',
+                    'location': '006',
                     'points': customer["points"]
                 })
                 new_user_doc1.insert(ignore_permissions=True)
@@ -65,7 +89,7 @@ def update_customer():
                 api_secret = frappe.generate_hash(length=15)
                 user_details.api_secret = api_secret
                 user_details.flags.ignore_permissions = True
-                # user_details.add_roles("Ecommerce")
+                user_details.add_roles("Ecommerce")
                 user_details.user_type = 'Website User'
                 user_details.save(ignore_permissions=True)
 

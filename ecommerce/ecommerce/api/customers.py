@@ -76,7 +76,7 @@ def save_shipping_address():
                 'city_name': sh["city_name"],
                 'primary_address': sh["primary_address"]
             })
-            doc.insert()
+            doc.insert(ignore_permissions=True)
             frappe.db.commit()
             customer = get_customer_details(sh["customer_email"])
             return {"status": "success", "data": customer}
@@ -89,9 +89,8 @@ def save_shipping_address():
             doc.block_number = sh["block_number"]
             doc.area_name = sh["area_name"]
             doc.city_name = sh["city_name"]
-            doc.primary_address = sh["primary_address"]
-
-            doc.save()
+            doc.primary_address = sh["primary_address"]            
+            doc.save(ignore_permissions=True)
             frappe.db.commit()
             customer = get_customer_details(sh["customer_email"])
             return {"status": "success", "data": customer}

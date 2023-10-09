@@ -3,7 +3,7 @@ import frappe
 import json
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_all_banners():
     try:
         banners = frappe.db.sql(
@@ -17,7 +17,7 @@ def get_all_banners():
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_all_flyers():
     try:
         flyers = frappe.db.sql(

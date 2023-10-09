@@ -33,7 +33,7 @@ class Product:
 ################################################################################################################
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_product(product_name):
     try:
         products = frappe.db.sql(
@@ -49,7 +49,7 @@ def get_product(product_name):
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_product_by_barcode(barcode):
     try:
         products = frappe.db.sql(
@@ -65,7 +65,7 @@ def get_product_by_barcode(barcode):
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_products_like(name):
     try:
         products = frappe.db.sql(
@@ -81,7 +81,7 @@ def get_products_like(name):
         return {"status": "failed"}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def get_all_products(group_name):
     try:
         if not group_name:

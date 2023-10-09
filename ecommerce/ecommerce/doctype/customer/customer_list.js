@@ -26,6 +26,22 @@ frappe.listview_settings['Customer'] = {
             });
         });
 
+        listview.page.add_menu_item(__("Update Loyal Points"), function () {
+            frappe.call({
+                method: 'ecommerce.ecommerce.doctype.customer.customer.update_customer_points',
+                callback: function (r) {
+                    if (r.message.status == 'success') {
+                        console.log(r.message.data);
+                        listview.refresh();
+                        frappe.msgprint('Customers points updated successfully.');
+                    } else {
+                        frappe.msgprint('Failed to update.', r.message.data);
+                    }
+
+                }
+            });
+        });
+
     }
 
 

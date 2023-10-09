@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{######}",
+ "creation": "2023-09-24 18:22:08.024333",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "order",
+  "order_status",
+  "update_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "order",
+   "fieldtype": "Link",
+   "label": "Order",
+   "options": "Orders"
+  },
+  {
+   "fieldname": "order_status",
+   "fieldtype": "Select",
+   "label": "Order Status",
+   "options": "Order Received\nPreparing\nReady For Delivery\nComplete"
+  },
+  {
+   "fieldname": "update_time",
+   "fieldtype": "Datetime",
+   "label": "Update Time"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-25 17:30:07.511351",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Order Status",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "order",
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

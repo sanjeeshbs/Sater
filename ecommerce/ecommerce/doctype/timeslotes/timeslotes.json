@@ -57,7 +57,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-09 13:30:58.565011",
+ "modified": "2022-05-08 09:05:02.711930",
  "modified_by": "Administrator",
  "module": "Ecommerce",
  "name": "Timeslotes",
@@ -72,6 +72,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   },
@@ -84,6 +85,7 @@
    "read": 1,
    "report": 1,
    "role": "Ecommerce",
+   "select": 1,
    "share": 1,
    "write": 1
   }

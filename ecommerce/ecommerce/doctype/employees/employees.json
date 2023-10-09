@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{######}",
+ "creation": "2023-09-20 20:06:28.179298",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "staff_name",
+  "mobile_no",
+  "designation",
+  "location",
+  "location_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.first_name",
+   "fieldname": "staff_name",
+   "fieldtype": "Read Only",
+   "label": "Staff Name"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Select",
+   "label": "Designation",
+   "options": "Admin\nStaff\nDriver"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location"
+  },
+  {
+   "fetch_from": "location.location_name",
+   "fieldname": "location_name",
+   "fieldtype": "Read Only",
+   "label": "Location Name"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-09-27 16:06:38.278199",
+ "modified_by": "Administrator",
+ "module": "Ecommerce",
+ "name": "Employees",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "employee",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "staff_name"
+}

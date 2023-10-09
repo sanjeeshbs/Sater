@@ -1,15 +1,14 @@
 # Copyright (c) 2021, Sanjeesh and contributors
 # For license information, please see license.txt
 
+from hashlib import sha224
 import frappe
 import json
 import requests
 from frappe.model.document import Document
 
-
 class Items(Document):
     pass
-
 
 @frappe.whitelist()
 def update_category(category, items):
@@ -30,7 +29,7 @@ def update_category(category, items):
 @frappe.whitelist()
 def update_item_master():
     try:
-        url = 'http://88.201.64.7:4058/api/v1/Products'
+        url = 'https://server.alsatermarket.com:4058/api/v1/Products'
         response = requests.get(url)
         products = response.json()
         for product in products:
@@ -47,6 +46,9 @@ def update_item_master():
                 doc1.item_name = product['item_name']
                 doc1.item_status = item_status
                 doc1.on_hand = product['on_hand']
+                # if product['image_name']:
+                # doc1.image_name = product['image_name']
+                # doc1.image_name = '\/files\/' + str(product['image_name'])
                 for barcode in product['barcodes']:
                     filtered = [
                         b for b in doc1.barcodes if b.barcode == barcode['barcode']]
@@ -73,13 +75,18 @@ def update_item_master():
 
                 doc1.save()
             else:
+                image_name = ''
+                if product['image_name']:
+                    image_name = '/files/' + str(product['image_name'])
+                    # image_name = str(product['image_name'])
                 doc2 = frappe.get_doc(
                     {'doctype': 'Items',
                      'item_code': product['item_code'],
                      'item_name': product['item_name'],
                      'item_status': item_status,
                      'on_hand': product['on_hand'],
-                     'group_name': '000002',
+                     'group_name' : '000008',
+                     'image_name' :  image_name
                      })
                 for barcode in product['barcodes']:
                     doc2.append('barcodes', {

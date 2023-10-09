@@ -83,7 +83,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-10-10 13:48:34.854347",
+ "modified": "2022-04-24 12:24:19.742435",
  "modified_by": "Administrator",
  "module": "Ecommerce",
  "name": "Shipping Address",
@@ -98,6 +98,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
    "share": 1,
    "write": 1
   },
@@ -110,6 +111,7 @@
    "read": 1,
    "report": 1,
    "role": "Ecommerce",
+   "select": 1,
    "share": 1,
    "write": 1
   }

@@ -77,9 +77,17 @@ frappe.ui.form.on('OrderDetails', {
 	},
 	qty(frm, cdt, cdn) {
 		update_total(frm, cdt, cdn);
-	}
+	},
+
 
 });
+
+// frappe.ui.form.on("Expense Claim Detail", "validate", function(frm, dt, dn) 
+// { var row = locals[dt][dn]; 
+// 	frappe.model.set_value(dt, dn, "claim_amount", 
+// 	flt(row.qte * row.prix_unitaire)); 
+// 	refresh_field("expenses"); 
+// });
 
 
 
